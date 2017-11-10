@@ -181,6 +181,22 @@ async def on_message(message):
         await client.send_message(message.channel, "Du hast {} XP".format(xp))
 
     user_timer[message.author.id] = time.time()
+    
+    if message.content.lower().startswith("!lb"):
+        msg = "Leaderboard:```\n"
+        
+        counter = 1
+        for member in message.server.members:
+            xp = get_xp(member.id)
+            msg += f"{counter}. {member.name}: {xp} XP\n"
+            
+            if counter == 20:
+                break
+            else:
+                counter += 1
+        
+        msg += "```"
+        await client.send_message(message.channel, msg)
 
 
 @client.event
