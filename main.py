@@ -119,6 +119,7 @@ async def on_message(message):
                         "- `!role`\n"
                         "- `!r_role`\n"
                         "- `!xp`\n"
+                        "- `!lb`\n"
                         "- `!github`\n"
         )
 
