@@ -186,8 +186,12 @@ async def on_message(message):
         msg = "Leaderboard:```\n"
         
         counter = 1
-        for member in message.server.members:
-            xp = get_xp(member.id)
+        lb = list(map(lambda m: (m, get_xp(m.id)), message.server.members))
+        lb = lb.sort(key=lambda x: x[1], reverse=True)
+        
+        for element in lb:
+            member = element[0]
+            xp = element[1]
             msg += f"{counter}. {member.name}: {xp} XP\n"
             
             if counter == 20:
